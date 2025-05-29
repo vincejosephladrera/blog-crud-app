@@ -84,7 +84,7 @@ export default function SiteBlogList() {
 			<section>
 				<h2 className="h2 mb-8">All Blogs</h2>
 				{isLoading ? (
-					<ul className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+					<ul className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8 list-none">
 						<BlogSkeleton />
 					</ul>
 				) : blogs?.pages[0].posts.length === 0 ? (
@@ -96,12 +96,16 @@ export default function SiteBlogList() {
 								page.posts.map((blog: Blogs) => <BlogCard key={blog.id} blog={blog} />),
 							)}
 						</ul>
-						{isFetchingNextPage && <BlogSkeleton />}
-						<div ref={loadMoreRef} style={{ height: '1px' }} />
-						{!hasNextPage && (
-							<p className="h3 text-center">You&apos;ve reached the end! Thanks for reading!</p>
-						)}
 					</>
+				)}
+				{isFetchingNextPage && (
+					<ul className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8 list-none">
+						<BlogSkeleton />
+					</ul>
+				)}
+				<div ref={loadMoreRef} style={{ height: '1px' }} />
+				{!hasNextPage && (
+					<p className="h3 text-center">You&apos;ve reached the end! Thanks for reading!</p>
 				)}
 			</section>
 		</div>
