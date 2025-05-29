@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/shadcn/button';
 import { Input } from '@/components/shadcn/input';
 import { Label } from '@/components/shadcn/label';
+import Link from 'next/link';
 
 export default function LoginForm({ className, ...props }: React.ComponentProps<'form'>) {
 	return (
@@ -29,9 +30,9 @@ export default function LoginForm({ className, ...props }: React.ComponentProps<
 			</div>
 			<div className="text-center text-sm">
 				Don&apos;t have an account?{' '}
-				<a href="/admin/register" className="underline underline-offset-4">
+				<Link href="/admin/register" className="underline underline-offset-4">
 					Sign up
-				</a>
+				</Link>
 			</div>
 		</form>
 	);
