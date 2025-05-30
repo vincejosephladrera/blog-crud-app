@@ -1,43 +1,44 @@
 import { notFound } from 'next/navigation';
-import { getBlog } from './api/api';
-import Container from '@/components/Container';
-import ImageWrapper from '@/components/ImageWrapper';
-import type { Metadata } from 'next';
+// import { getBlog } from './api/api';
+// import Container from '@/components/Container';
+// import ImageWrapper from '@/components/ImageWrapper';
+// import type { Metadata } from 'next';
 
-export async function generateMetadata(): Promise<Metadata> {
-	try {
-		const blog = await getBlog();
+// export async function generateMetadata(): Promise<Metadata> {
+// 	try {
+// 		const blog = await getBlog();
 
-		return {
-			title: `${blog.title}`,
-			description: blog.content || 'Read this blog on our site.',
-			openGraph: {
-				title: blog.title,
-				description: blog.content || 'Read this blog on our site.',
-				images: [
-					{
-						url: blog.thumbnailUrl || '/images/featured-placeholder-img.webp',
-					},
-				],
-			},
-		};
-	} catch {
-		return {
-			title: 'Blog Not Found',
-			description: 'The blog post you’re looking for does not exist.',
-		};
-	}
-}
+// 		return {
+// 			title: `${blog.title}`,
+// 			description: blog.content || 'Read this blog on our site.',
+// 			openGraph: {
+// 				title: blog.title,
+// 				description: blog.content || 'Read this blog on our site.',
+// 				images: [
+// 					{
+// 						url: blog.thumbnailUrl || '/images/featured-placeholder-img.webp',
+// 					},
+// 				],
+// 			},
+// 		};
+// 	} catch {
+// 		return {
+// 			title: 'Blog Not Found',
+// 			description: 'The blog post you’re looking for does not exist.',
+// 		};
+// 	}
+// }
 
 export default async function BlogShow() {
 	try {
-		const blog = await getBlog();
+		// const blog = await getBlog();
 
-		const { title, content } = blog;
+		// const { title, content } = blog;
 
 		return (
 			<>
-				<section className="py-20">
+				<div></div>
+				{/* <section className="py-20">
 					<Container>
 						<h1 className="h1 mb-10">{title}</h1>
 						<ImageWrapper
@@ -48,7 +49,7 @@ export default async function BlogShow() {
 						/>
 						{content}
 					</Container>
-				</section>
+				</section> */}
 			</>
 		);
 	} catch (e) {
