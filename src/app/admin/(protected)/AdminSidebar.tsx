@@ -11,21 +11,14 @@ import {
 	SidebarFooter,
 } from '@/components/shadcn/sidebar';
 import Link from 'next/link';
-
-import SignOutButton from './SignOutButton';
-import { NotepadTextIcon, ChevronUpIcon } from 'lucide-react';
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuTrigger,
-} from '@/components/shadcn/dropdown-menu';
-
+import { NotepadTextIcon } from 'lucide-react';
 import DarkModeToggleCMS from './DarkModeToggleCMS';
+import UserNav from './UserNav';
 
 const contentMaintenanceLinks = [
 	{
 		title: 'Blogs',
-		url: '/user/blogs',
+		url: '/admin/blogs',
 		icon: NotepadTextIcon,
 	},
 ];
@@ -60,17 +53,7 @@ export default function AdminSidebar() {
 			<SidebarFooter>
 				<SidebarMenu>
 					<SidebarMenuItem>
-						<DropdownMenu>
-							<DropdownMenuTrigger asChild>
-								<SidebarMenuButton>
-									Username
-									<ChevronUpIcon className="ml-auto" />
-								</SidebarMenuButton>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent side="top" className="w-[--radix-popper-anchor-width]">
-								<SignOutButton />
-							</DropdownMenuContent>
-						</DropdownMenu>
+						<UserNav />
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarFooter>
