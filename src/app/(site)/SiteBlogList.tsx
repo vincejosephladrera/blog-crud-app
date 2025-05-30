@@ -8,8 +8,11 @@ import BlogSkeleton from './BlogSkeleton';
 import EmptyState from './EmptyState';
 
 interface Blogs {
-	id: string;
+	id?: string;
 	title: string;
+	content: string;
+	thumbnailUrl?: string;
+	createdAt: Date;
 }
 
 export default function SiteBlogList() {
