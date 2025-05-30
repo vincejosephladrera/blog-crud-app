@@ -12,40 +12,32 @@ import {
 } from '@/components/shadcn/sidebar';
 import Link from 'next/link';
 
-import { NotepadTextIcon, SettingsIcon, ChevronUpIcon } from 'lucide-react';
+import SignOutButton from './SignOutButton';
+import { NotepadTextIcon, ChevronUpIcon } from 'lucide-react';
 import {
 	DropdownMenu,
 	DropdownMenuContent,
-	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/shadcn/dropdown-menu';
+
+import DarkModeToggleCMS from './DarkModeToggleCMS';
 
 const contentMaintenanceLinks = [
 	{
 		title: 'Blogs',
-		url: '/admin/blogs',
+		url: '/user/blogs',
 		icon: NotepadTextIcon,
 	},
 ];
 
-const adminMaintenanceLinks = [
-	{
-		title: 'Admin Settings',
-		url: '/admin/settings',
-		icon: SettingsIcon,
-	},
-];
-
-interface LinkProps {
-	title: string;
-	url: string;
-	icon: typeof NotepadTextIcon;
-}
-
 export default function AdminSidebar() {
 	return (
 		<Sidebar>
-			<SidebarHeader></SidebarHeader>
+			<SidebarHeader>
+				<SidebarGroup className="mt-auto">
+					<DarkModeToggleCMS />
+				</SidebarGroup>
+			</SidebarHeader>
 			<SidebarContent>
 				<SidebarGroup>
 					<SidebarGroupLabel>Content Maintenance</SidebarGroupLabel>
@@ -64,26 +56,6 @@ export default function AdminSidebar() {
 						</SidebarMenu>
 					</SidebarGroupContent>
 				</SidebarGroup>
-				<SidebarGroup className=" mt-auto">
-					<SidebarGroupLabel>User/Admin Maintenance</SidebarGroupLabel>
-					<SidebarGroupContent>
-						<SidebarMenu>
-							{adminMaintenanceLinks.map(({ title, url, icon }: LinkProps) => {
-								const IconComponent = icon;
-								return (
-									<SidebarMenuItem key={title}>
-										<SidebarMenuButton asChild>
-											<Link href={url}>
-												<IconComponent />
-												<span>{title}</span>
-											</Link>
-										</SidebarMenuButton>
-									</SidebarMenuItem>
-								);
-							})}
-						</SidebarMenu>
-					</SidebarGroupContent>
-				</SidebarGroup>
 			</SidebarContent>
 			<SidebarFooter>
 				<SidebarMenu>
@@ -96,12 +68,7 @@ export default function AdminSidebar() {
 								</SidebarMenuButton>
 							</DropdownMenuTrigger>
 							<DropdownMenuContent side="top" className="w-[--radix-popper-anchor-width]">
-								<DropdownMenuItem>
-									<span>Account</span>
-								</DropdownMenuItem>
-								<DropdownMenuItem>
-									<span>Sign out</span>
-								</DropdownMenuItem>
+								<SignOutButton />
 							</DropdownMenuContent>
 						</DropdownMenu>
 					</SidebarMenuItem>

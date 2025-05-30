@@ -1,8 +1,6 @@
-'use client';
-
-import Image from 'next/image';
-import { useState } from 'react';
-import { Skeleton } from '@/components/shadcn/skeleton';
+import { toKebabCase } from '@/lib/kebab-case';
+import ImageWrapper from '@/components/ImageWrapper';
+import Link from 'next/link';
 
 interface FeatureBlogCardProp {
 	title: string;
@@ -17,44 +15,36 @@ export default function FeaturedBlogCard({
 	thumbnailUrl = '/images/featured-placeholder-img.webp',
 	datePublished,
 }: FeatureBlogCardProp) {
-	const [photoUrl, setPhotoUrl] = useState(thumbnailUrl);
-
-	const [isImageLoading, setIsImageLoading] = useState(true);
-
 	const stringDate = datePublished.toLocaleDateString('en-US', {
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric',
 	});
 
+	const slug = toKebabCase(title);
+
 	return (
 		<>
-			<div className=" w-full aspect-[1216/450] relative overflow-clip rounded-xl mb-10">
-				{isImageLoading && (
-					<Skeleton
-						className=" w-full absolute top-0 left-0 aspect-[1216/450]"
-						data-testid="loading-skeleton"
-					/>
-				)}
-				<Image
-					src={photoUrl}
-					fill
-					alt=""
-					objectFit="cover"
-					objectPosition="center"
+			<Link href={`${slug}`}>
+				<ImageWrapper
+					aspectRatio="1216/450"
+					src={thumbnailUrl}
+					placeholderUrl="/images/featured-placeholder-img.webp"
+					className="mb-8 rounded-xl"
 					loading="eager"
-					onLoad={() => {
-						setIsImageLoading(false);
-					}}
-					onError={() => {
-						setPhotoUrl('/images/featured-placeholder-img.webp');
-					}}
 				/>
-			</div>
-			<div className="md:w-[50%]">
-				<h1 className="h1 line-clamp-2 mb-6">{title}</h1>
-				<p className=" line-clamp-3 mb-6">{content}</p>
-				<p>{stringDate}</p>
+			</Link>
+			<div className="">
+				<Link href={`${slug}`}>
+					<h1 className="h1 line-clamp-2 mb-6 hover:opacity-70">{title}</h1>
+				</Link>
+				<Link href={`${slug}`}>
+					<p className=" line-clamp-3 mb-3 hover:opacity-70">{content}</p>
+				</Link>
+				<p className="mb-1">{stringDate}</p>
+				<Link href={`${slug}`}>
+					<p className="hover:opacity-70">Read More</p>
+				</Link>
 			</div>
 		</>
 	);

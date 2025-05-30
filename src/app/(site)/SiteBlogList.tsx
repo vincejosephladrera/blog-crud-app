@@ -23,6 +23,7 @@ export default function SiteBlogList() {
 		initialPageParam: 0,
 		queryKey: ['blogs'],
 		queryFn: fetchAllBlogs,
+		staleTime: 0,
 		getNextPageParam: (lastPage) => {
 			const { skip, limit, total } = lastPage;
 			const nextSkip = skip + limit;
@@ -77,8 +78,6 @@ export default function SiteBlogList() {
 		return () => observer.disconnect();
 	}, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-	console.log(blogs);
-
 	return (
 		<div className="py-20">
 			<section>
@@ -87,13 +86,13 @@ export default function SiteBlogList() {
 					<ul className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8 list-none">
 						<BlogSkeleton />
 					</ul>
-				) : blogs?.pages[0].posts.length === 0 ? (
+				) : blogs?.pages[0].blogs.length === 0 ? (
 					<EmptyState />
 				) : (
 					<>
 						<ul className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
 							{blogs?.pages.flatMap((page) =>
-								page.posts.map((blog: Blogs) => <BlogCard key={blog.id} blog={blog} />),
+								page.blogs.map((blog: Blogs) => <BlogCard key={blog.id} blog={blog} />),
 							)}
 						</ul>
 					</>
@@ -104,7 +103,7 @@ export default function SiteBlogList() {
 					</ul>
 				)}
 				<div ref={loadMoreRef} style={{ height: '1px' }} />
-				{!hasNextPage && (
+				{!hasNextPage && blogs?.pages[0].blogs.length !== 0 && (
 					<p className="h3 text-center">You&apos;ve reached the end! Thanks for reading!</p>
 				)}
 			</section>

@@ -1,20 +1,24 @@
-import type { QueryFunctionContext } from '@tanstack/react-query';
+import { supabase } from '@/lib/supabase';
 
-async function fetchAllBlogs({ pageParam }: QueryFunctionContext) {
+export async function fetchAllBlogs({ pageParam = 0 }: { pageParam: number }) {
 	const limit = 8;
-	const skip = pageParam;
+	const from = pageParam * limit;
+	const to = from + limit - 1;
 
-	const res = await fetch(`https://dummyjson.com/posts?limit=${limit}&skip=${skip}`);
+	const { data, error, count } = await supabase
+		.from('blogs')
+		.select('*', { count: 'exact' })
+		.order('created_at', { ascending: false })
+		.range(from, to);
 
-	if (!res.ok) throw new Error('Failed to fetch blogs');
+	if (error) {
+		throw new Error(error.message);
+	}
 
-	const data = await res.json();
-
-	//uncomment to Simulate empty state
-	// data.posts = [];
-	// data.total = 0;
-
-	return data;
+	return {
+		blogs: data,
+		total: count ?? 0,
+		skip: pageParam,
+		limit: limit,
+	};
 }
-
-export { fetchAllBlogs };
