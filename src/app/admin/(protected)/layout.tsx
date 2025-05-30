@@ -4,7 +4,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/shadcn/sidebar';
 
 import AdminSidebar from './AdminSidebar';
 
-export default function CMSLayout({ children }: PropsWithChildren) {
+export default async function CMSLayout({ children }: PropsWithChildren) {
 	return (
 		<SidebarProvider>
 			<AdminSidebar />
