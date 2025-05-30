@@ -1,5 +1,5 @@
 import { PropsWithChildren } from 'react';
-import Header from '../admin/_components/Header';
+import Header from '@/components/Header';
 
 export default function Site({ children }: PropsWithChildren) {
 	return (

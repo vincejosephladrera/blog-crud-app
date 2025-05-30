@@ -10,7 +10,6 @@ export default function Header() {
 				<Link href="/">
 					<Image src="/images/logo.webp" alt="logo" width={229} height={48} />
 				</Link>
-
 				<ToggleDarkMode />
 			</Container>
 		</header>
