@@ -23,6 +23,7 @@ import { useMutation } from '@tanstack/react-query';
 import { createBlog } from './api';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
+import { Switch } from '@/components/shadcn/switch';
 
 import { useForm } from 'react-hook-form';
 
@@ -32,9 +33,11 @@ export default function NewBlogForm() {
 	const form = useForm<CreateBlogInput>({
 		resolver: zodResolver(createBlogSchema),
 		defaultValues: {
+			isActive: true,
 			title: '',
 			excerpt: '',
 			content: '',
+			slug: '',
 			thumbnailUrl: '',
 		},
 	});
@@ -62,6 +65,21 @@ export default function NewBlogForm() {
 						<PlusIcon />
 					</Button>
 				</div>
+				<FormField
+					control={form.control}
+					name="isActive"
+					render={({ field }) => {
+						return (
+							<FormItem className="grid gap-3 mb-4">
+								<FormLabel>Active</FormLabel>
+								<FormControl>
+									<Switch checked={field.value} onCheckedChange={field.onChange} />
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						);
+					}}
+				/>
 				<div className="grid grid-cols-2 gap-6">
 					<FormField
 						control={form.control}
@@ -80,11 +98,11 @@ export default function NewBlogForm() {
 					/>
 					<FormField
 						control={form.control}
-						name="excerpt"
+						name="slug"
 						render={({ field }) => {
 							return (
 								<FormItem className="grid gap-3">
-									<FormLabel>Excerpt</FormLabel>
+									<FormLabel>Slug</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
@@ -110,12 +128,26 @@ export default function NewBlogForm() {
 					/>
 					<FormField
 						control={form.control}
+						name="excerpt"
+						render={({ field }) => {
+							return (
+								<FormItem className="grid gap-3">
+									<FormLabel>Excerpt</FormLabel>
+									<FormControl>
+										<Input {...field} />
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							);
+						}}
+					/>
+					<FormField
+						control={form.control}
 						name="content"
 						render={({ field }) => {
 							return (
 								<FormItem className="col-span-2 border-0">
 									<FormLabel>Content</FormLabel>
-									{/* <EditorComponent /> */}
 									<TiptapEditor value={field.value} onChange={field.onChange} />
 									<FormControl>
 										<Input hidden {...field} />
