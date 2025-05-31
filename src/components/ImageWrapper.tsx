@@ -23,7 +23,7 @@ export default function ImageWrapper({
 	const [imageUrl, setImageUrl] = useState(src);
 
 	return (
-		<div className={cn('w-full relative overflow-clip', 'aspect-video', className)}>
+		<div className={cn('w-full relative overflow-clip aspect-video rounded-xl', className)}>
 			<Image
 				{...props}
 				src={imageUrl}

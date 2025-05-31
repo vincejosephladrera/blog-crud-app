@@ -37,7 +37,7 @@ export default function FeaturedBlogCard({
 					<h1 className="h1 line-clamp-2 mb-6 hover:opacity-70">{title}</h1>
 				</Link>
 				<Link href={`${slug}`}>
-					<p className=" line-clamp-3 mb-3 hover:opacity-70">{excerpt}</p>
+					<p className=" line-clamp-3 mb-3 h3 hover:opacity-70">{excerpt}</p>
 				</Link>
 				<p className="mb-1">{stringDate}</p>
 				<Link href={`${slug}`}>

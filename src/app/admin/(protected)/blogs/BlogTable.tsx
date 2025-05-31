@@ -5,6 +5,7 @@ import { DataTable } from '@/components/shadcn/data-table';
 import { useBlogColumns } from './useBlogsColumn';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAllBlogs } from './api';
+import { CardContent, CardFooter } from '@/components/shadcn/card';
 
 import {
 	Pagination,
@@ -83,51 +84,54 @@ export default function BlogTable() {
 
 	return (
 		<>
-			<DataTable columns={columns} isLoading={isLoading} data={data?.data ?? []} />
+			<CardContent className=" h-full overflow-auto">
+				<DataTable columns={columns} isLoading={isLoading} data={data?.data ?? []} />
+			</CardContent>
+			<CardFooter>
+				<Pagination>
+					<PaginationContent>
+						<PaginationItem>
+							<PaginationPrevious
+								className={cn(page === 1 && 'pointer-events-none')}
+								onClick={(e) => {
+									e.preventDefault();
+									goPrev();
+								}}
+							/>
+						</PaginationItem>
 
-			<Pagination className="mt-10">
-				<PaginationContent>
-					<PaginationItem>
-						<PaginationPrevious
-							className={cn(page === 1 && 'pointer-events-none')}
-							onClick={(e) => {
-								e.preventDefault();
-								goPrev();
-							}}
-						/>
-					</PaginationItem>
+						{pages.map((p, i) =>
+							p === 'ellipsis' ? (
+								<PaginationItem key={`ellipsis-${i}`}>
+									<PaginationEllipsis />
+								</PaginationItem>
+							) : (
+								<PaginationItem key={p}>
+									<PaginationLink
+										className={cn(page === p && 'bg-blue-300 dark:bg-blue-700 pointer-events-none')}
+										onClick={(e) => {
+											e.preventDefault();
+											goToPage(p as number);
+										}}
+									>
+										{p}
+									</PaginationLink>
+								</PaginationItem>
+							),
+						)}
 
-					{pages.map((p, i) =>
-						p === 'ellipsis' ? (
-							<PaginationItem key={`ellipsis-${i}`}>
-								<PaginationEllipsis />
-							</PaginationItem>
-						) : (
-							<PaginationItem key={p}>
-								<PaginationLink
-									className={cn(page === p && 'bg-blue-300 dark:bg-blue-700 pointer-events-none')}
-									onClick={(e) => {
-										e.preventDefault();
-										goToPage(p as number);
-									}}
-								>
-									{p}
-								</PaginationLink>
-							</PaginationItem>
-						),
-					)}
-
-					<PaginationItem>
-						<PaginationNext
-							className={cn(page === lastPage && 'pointer-events-none')}
-							onClick={(e) => {
-								e.preventDefault();
-								goNext();
-							}}
-						/>
-					</PaginationItem>
-				</PaginationContent>
-			</Pagination>
+						<PaginationItem>
+							<PaginationNext
+								className={cn(page === lastPage && 'pointer-events-none')}
+								onClick={(e) => {
+									e.preventDefault();
+									goNext();
+								}}
+							/>
+						</PaginationItem>
+					</PaginationContent>
+				</Pagination>
+			</CardFooter>
 		</>
 	);
 }

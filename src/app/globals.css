@@ -156,6 +156,10 @@
 		}
 	}
 
+	.dynamic-content > * + * {
+		@apply mb-8;
+	}
+
 	.dynamic-content h1 {
 		@apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
 	}
@@ -180,6 +184,23 @@
 		border-radius: 0.25rem;
 	}
 
+	.dynamic-content ol,
+	.dynamic-content ul {
+		@apply my-4 pl-6;
+	}
+
+	.dynamic-content ol {
+		@apply list-decimal;
+	}
+
+	.dynamic-content ul {
+		@apply list-disc;
+	}
+
+	.dynamic-content li {
+		@apply mb-1 leading-relaxed;
+	}
+
 	.ProseMirror h1 {
 		@apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
 	}
@@ -194,6 +215,23 @@
 
 	.ProseMirror h4 {
 		@apply scroll-m-20 text-xl font-semibold tracking-tight;
+	}
+
+	.ProseMirror ol,
+	.ProseMirror ul {
+		@apply my-4 pl-6;
+	}
+
+	.ProseMirror ol {
+		@apply list-decimal;
+	}
+
+	.ProseMirror ul {
+		@apply list-disc;
+	}
+
+	.ProseMirror li {
+		@apply mb-1 leading-relaxed;
 	}
 
 	.ProseMirror blockquote {
