@@ -101,7 +101,7 @@ export default function NewBlogForm() {
 						name="title"
 						render={({ field }) => {
 							return (
-								<FormItem className="grid gap-3">
+								<FormItem className="grid gap-3 pb-8 relative">
 									<FormLabel>Title</FormLabel>
 									<FormControl>
 										<Input
@@ -113,7 +113,7 @@ export default function NewBlogForm() {
 											}}
 										/>
 									</FormControl>
-									<FormMessage />
+									<FormMessage className="absolute bottom-0 left-0" />
 								</FormItem>
 							);
 						}}
@@ -123,12 +123,12 @@ export default function NewBlogForm() {
 						name="slug"
 						render={({ field }) => {
 							return (
-								<FormItem className="grid gap-3">
+								<FormItem className="grid gap-3  pb-8 relative">
 									<FormLabel>Slug</FormLabel>
 									<FormControl>
 										<Input {...field} readOnly className="outline-0" />
 									</FormControl>
-									<FormMessage />
+									<FormMessage className="absolute bottom-0 left-0" />
 								</FormItem>
 							);
 						}}
@@ -138,12 +138,12 @@ export default function NewBlogForm() {
 						name="thumbnailUrl"
 						render={({ field }) => {
 							return (
-								<FormItem className="grid gap-3">
+								<FormItem className="grid pb-8 relative gap-3">
 									<FormLabel>Thumbnail Url</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
-									<FormMessage />
+									<FormMessage className="absolute bottom-0 left-0" />
 								</FormItem>
 							);
 						}}
@@ -153,12 +153,12 @@ export default function NewBlogForm() {
 						name="excerpt"
 						render={({ field }) => {
 							return (
-								<FormItem className="grid gap-3">
+								<FormItem className="grid  pb-8 relative gap-3">
 									<FormLabel>Excerpt</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
-									<FormMessage />
+									<FormMessage className="absolute bottom-0 left-0" />
 								</FormItem>
 							);
 						}}

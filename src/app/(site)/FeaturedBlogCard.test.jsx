@@ -95,7 +95,7 @@ describe('FeaturedBlogCard', () => {
 
 		await fireEvent.error(image);
 
-		expect(image).toHaveAttribute('src', '/images/featured-placeholder-img.webp');
+		expect(image).toHaveAttribute('src', '/images/placeholder-img.webp');
 	});
 
 	it('shows fallback image on no thumbnailUrl', () => {
@@ -109,6 +109,6 @@ describe('FeaturedBlogCard', () => {
 
 		const image = screen.getByRole('img');
 
-		expect(image).toHaveAttribute('src', '/images/featured-placeholder-img.webp');
+		expect(image).toHaveAttribute('src', '/images/placeholder-img.webp');
 	});
 });

@@ -109,7 +109,7 @@ export default function UpdateBlogForm({
 						name="title"
 						render={({ field }) => {
 							return (
-								<FormItem className="grid gap-3">
+								<FormItem className="grid gap-3 pb-8 relative">
 									<FormLabel>Title</FormLabel>
 									<FormControl>
 										<Input
@@ -121,7 +121,7 @@ export default function UpdateBlogForm({
 											}}
 										/>
 									</FormControl>
-									<FormMessage />
+									<FormMessage className="absolute bottom-0 left-0" />
 								</FormItem>
 							);
 						}}
@@ -131,12 +131,12 @@ export default function UpdateBlogForm({
 						name="slug"
 						render={({ field }) => {
 							return (
-								<FormItem className="grid gap-3">
+								<FormItem className="grid gap-3 pb-8 relative">
 									<FormLabel>Slug (Auto updates based on title)</FormLabel>
 									<FormControl>
 										<Input {...field} readOnly />
 									</FormControl>
-									<FormMessage />
+									<FormMessage className="absolute bottom-0 left-0" />
 								</FormItem>
 							);
 						}}
@@ -146,12 +146,12 @@ export default function UpdateBlogForm({
 						name="thumbnailUrl"
 						render={({ field }) => {
 							return (
-								<FormItem className="grid gap-3">
+								<FormItem className="grid gap-3 pb-8 relative">
 									<FormLabel>Thumbnail Url</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
-									<FormMessage />
+									<FormMessage className="absolute bottom-0 left-0" />
 								</FormItem>
 							);
 						}}
@@ -161,12 +161,12 @@ export default function UpdateBlogForm({
 						name="excerpt"
 						render={({ field }) => {
 							return (
-								<FormItem className="grid gap-3">
+								<FormItem className="grid gap-3 pb-8 relative">
 									<FormLabel>Excerpt</FormLabel>
 									<FormControl>
 										<Input {...field} />
 									</FormControl>
-									<FormMessage />
+									<FormMessage className="absolute bottom-0 left-0" />
 								</FormItem>
 							);
 						}}

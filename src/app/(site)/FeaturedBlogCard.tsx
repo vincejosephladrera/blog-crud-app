@@ -12,7 +12,7 @@ interface FeatureBlogCardProp {
 export default function FeaturedBlogCard({
 	title,
 	excerpt,
-	thumbnailUrl = '/images/featured-placeholder-img.webp',
+	thumbnailUrl = '/images/placeholder-img.webp',
 	datePublished,
 	slug,
 }: FeatureBlogCardProp) {
@@ -27,7 +27,7 @@ export default function FeaturedBlogCard({
 			<Link href={`${slug}`}>
 				<ImageWrapper
 					src={thumbnailUrl}
-					placeholderUrl="/images/featured-placeholder-img.webp"
+					placeholderUrl="/images/placeholder-img.webp"
 					className="mb-8 rounded-xl"
 					loading="eager"
 				/>
