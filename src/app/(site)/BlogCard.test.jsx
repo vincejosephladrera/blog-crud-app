@@ -11,7 +11,7 @@ vi.mock('next/image', () => ({
 describe('BlogCard', () => {
 	const blog = {
 		title: 'Test Blog Title',
-		content: 'Test description',
+		excerpt: 'Test description',
 		thumbnailUrl: '/test-thumbnail.jpg',
 		createdAt: new Date(),
 	};
@@ -22,7 +22,7 @@ describe('BlogCard', () => {
 		day: 'numeric',
 	});
 
-	it('renders title, content, image, date created, and read more', () => {
+	it('renders title, excerpt, image, date created, and read more', () => {
 		render(<BlogCard blog={blog} />);
 
 		expect(screen.getByRole('heading', { name: /test blog title/i })).toBeInTheDocument();

@@ -11,13 +11,13 @@ vi.mock('next/image', () => ({
 
 const blog = {
 	title: 'Blog Title',
-	content: 'Blog Description',
+	excerpt: 'Blog Excerpt',
 	thumbnailUrl: '/featured-blog.jpg',
 	datePublished: new Date(),
 };
 
 describe('FeaturedBlogCard', () => {
-	it('renders title, datePublished, description', () => {
+	it('renders title, datePublished, excerpt', () => {
 		const stringDate = new Date().toLocaleDateString('en-US', {
 			year: 'numeric',
 			month: 'long',
@@ -27,7 +27,7 @@ describe('FeaturedBlogCard', () => {
 		render(
 			<FeaturedBlogCard
 				title={blog.title}
-				content={blog.content}
+				excerpt={blog.excerpt}
 				thumbnailUrl={blog.thumbnailUrl}
 				datePublished={blog.datePublished}
 			/>,
@@ -38,6 +38,7 @@ describe('FeaturedBlogCard', () => {
 		const image = screen.getByRole('img');
 		expect(image).toBeInTheDocument();
 		expect(image).toHaveAttribute('src', '/featured-blog.jpg');
+		expect(screen.getByText(/blog excerpt/i)).toBeInTheDocument();
 
 		expect(screen.getByText(stringDate)).toBeInTheDocument();
 	});
@@ -46,7 +47,7 @@ describe('FeaturedBlogCard', () => {
 		render(
 			<FeaturedBlogCard
 				title={blog.title}
-				content={blog.content}
+				excerpt={blog.excerpt}
 				thumbnailUrl={blog.thumbnailUrl}
 				datePublished={blog.datePublished}
 			/>,
@@ -61,7 +62,7 @@ describe('FeaturedBlogCard', () => {
 		render(
 			<FeaturedBlogCard
 				title={blog.title}
-				content={blog.content}
+				excerpt={blog.excerpt}
 				thumbnailUrl={blog.thumbnailUrl}
 				datePublished={blog.datePublished}
 			/>,
@@ -84,7 +85,7 @@ describe('FeaturedBlogCard', () => {
 		render(
 			<FeaturedBlogCard
 				title={blog.title}
-				content={blog.content}
+				excerpt={blog.excerpt}
 				thumbnailUrl={'toError'}
 				datePublished={blog.datePublished}
 			/>,
@@ -94,20 +95,20 @@ describe('FeaturedBlogCard', () => {
 
 		await fireEvent.error(image);
 
-		expect(image).toHaveAttribute('src', '/images/featured-placeholder-img.webp');
+		expect(image).toHaveAttribute('src', '/images/placeholder-img.webp');
 	});
 
 	it('shows fallback image on no thumbnailUrl', () => {
 		render(
 			<FeaturedBlogCard
 				title={blog.title}
-				content={blog.content}
+				excerpt={blog.excerpt}
 				datePublished={blog.datePublished}
 			/>,
 		);
 
 		const image = screen.getByRole('img');
 
-		expect(image).toHaveAttribute('src', '/images/featured-placeholder-img.webp');
+		expect(image).toHaveAttribute('src', '/images/placeholder-img.webp');
 	});
 });

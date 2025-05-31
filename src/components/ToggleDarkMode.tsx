@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useAppSelector, useAppDispatch } from '@/store/hooks';
 import {
 	Tooltip,
 	TooltipContent,
@@ -9,18 +9,11 @@ import {
 } from '@/components/shadcn/tooltip';
 
 import { SunIcon, MoonIcon } from 'lucide-react';
+import { toggleTheme } from '@/store/themeSlice';
 
 export default function ToggleDarkMode() {
-	const [isDarkMode, setIsDarkMode] = useState(true);
-
-	useEffect(() => {
-		const html = document.querySelector('html');
-		if (isDarkMode) {
-			html?.classList.add('dark');
-		} else {
-			html?.classList.remove('dark');
-		}
-	}, [isDarkMode]);
+	const theme = useAppSelector((state) => state.theme.theme);
+	const dispatch = useAppDispatch();
 
 	return (
 		<TooltipProvider>
@@ -28,14 +21,23 @@ export default function ToggleDarkMode() {
 				<TooltipTrigger
 					className="ml-auto"
 					onClick={() => {
-						setIsDarkMode(!isDarkMode);
+						if (theme === 'light') {
+							localStorage.setItem('theme', 'dark');
+						} else {
+							localStorage.setItem('theme', 'light');
+						}
+						dispatch(toggleTheme());
 					}}
 				>
-					{isDarkMode ? <SunIcon /> : <MoonIcon className=" text-white" />}
+					{theme === 'light' ? (
+						<SunIcon className="text-white" />
+					) : (
+						<MoonIcon className=" text-white" />
+					)}
 				</TooltipTrigger>
 				<TooltipContent>
-					<p className=" font-bold">
-						{isDarkMode ? 'Toggle to light mode' : 'Toggle to dark mode'}
+					<p className="font-bold">
+						{theme === 'light' ? 'Toggle to light mode' : 'Toggle to dark mode'}
 					</p>
 				</TooltipContent>
 			</Tooltip>

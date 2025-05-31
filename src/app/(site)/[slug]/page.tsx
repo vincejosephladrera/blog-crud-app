@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { supabase } from '@/lib/supabase/supabase';
 import Container from '@/components/Container';
 import ImageWrapper from '@/components/ImageWrapper';
+import ContentRenderer from './ContentRenderer';
 
 type tParams = Promise<{ slug: string[] }>;
 
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: { params: tParams }): Promise
 				description: blog.excerpt || 'Read this blog on our site.',
 				images: [
 					{
-						url: blog.thumbnailUrl || '/images/featured-placeholder-img.webp',
+						url: blog.thumbnailUrl || '/images/placeholder-img.webp',
 					},
 				],
 			},
@@ -59,11 +60,11 @@ export default async function BlogShow({ params }: { params: tParams }) {
 					<Container>
 						<h1 className="h1 mb-10">{data.title}</h1>
 						<ImageWrapper
-							src="/images/featured-placeholder-img.webp"
-							placeholderUrl="/images/featured-placeholder-img.webp"
+							src="/images/placeholder-img.webp"
+							placeholderUrl="/images/placeholder-img.webp"
 							className="mb-6"
 						/>
-						{data.content}
+						<ContentRenderer content={data.content} />
 					</Container>
 				</section>
 			</>

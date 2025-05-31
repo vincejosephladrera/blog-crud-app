@@ -108,7 +108,7 @@ export default function RegistrationForm({ className, ...props }: React.Componen
 						}}
 					/>
 					<Button type="submit" className="w-full">
-						Login
+						Register
 					</Button>
 				</div>
 				<div className="text-center text-sm">

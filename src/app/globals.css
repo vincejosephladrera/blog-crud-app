@@ -156,6 +156,30 @@
 		}
 	}
 
+	.dynamic-content h1 {
+		@apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+	}
+
+	.dynamic-content h2 {
+		@apply scroll-m-20 text-3xl font-semibold tracking-tight;
+	}
+
+	.dynamic-content h3 {
+		@apply scroll-m-20 text-2xl font-semibold tracking-tight;
+	}
+
+	.dynamic-content h4 {
+		@apply scroll-m-20 text-xl font-semibold tracking-tight;
+	}
+
+	.dynamic-content blockquote {
+		@apply border-l-4 border-zinc-400 dark:border-zinc-600 pl-4 italic text-zinc-700 dark:text-zinc-300 my-4 dark:!bg-zinc-900;
+		background-color: rgba(0, 0, 0, 0.03); /* subtle background */
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		border-radius: 0.25rem;
+	}
+
 	.ProseMirror h1 {
 		@apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
 	}

@@ -8,6 +8,7 @@ export async function fetchAllBlogs({ limit = 10, skip = 0 }: { limit?: number; 
 	const { data, error, count } = await supabase
 		.from('blogs')
 		.select('*', { count: 'exact' })
+		.order('createdAt', { ascending: false })
 		.range(from, to);
 
 	if (error) {
