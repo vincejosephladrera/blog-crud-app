@@ -6,7 +6,6 @@ import { Skeleton } from './shadcn/skeleton';
 import { cn } from '@/lib/utils';
 
 type ImageWrapperProps = {
-	aspectRatio: string;
 	placeholderUrl: string;
 	className?: string;
 	src: string;
@@ -14,7 +13,6 @@ type ImageWrapperProps = {
 } & Omit<ImageProps, 'src' | 'alt' | 'className' | 'fill' | 'width' | 'height'>;
 
 export default function ImageWrapper({
-	aspectRatio,
 	placeholderUrl,
 	src,
 	className,
@@ -25,7 +23,7 @@ export default function ImageWrapper({
 	const [imageUrl, setImageUrl] = useState(src);
 
 	return (
-		<div className={cn('w-full relative overflow-clip', `aspect-[${aspectRatio}]`, className)}>
+		<div className={cn('w-full relative overflow-clip', 'aspect-video', className)}>
 			<Image
 				{...props}
 				src={imageUrl}
@@ -41,7 +39,7 @@ export default function ImageWrapper({
 			{isLoading && (
 				<Skeleton
 					data-testid="loading-skeleton"
-					className={cn('absolute inset-0 w-full h-full', `aspect-[${aspectRatio}]`)}
+					className={cn('absolute inset-0 w-full h-full', `aspect-video`)}
 				/>
 			)}
 		</div>

@@ -44,7 +44,6 @@ export async function updateSession(request: NextRequest) {
 			url.pathname !== '/admin/login' &&
 			url.pathname !== '/admin/register'
 		) {
-			console.log(url.pathname);
 			url.pathname = '/admin/login';
 			return NextResponse.redirect(url);
 		}

@@ -1,10 +1,10 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { createBlogSchema, type CreateBlogInput } from './create-blog-schema';
+import { updateBlogSchema, type UpdateBlogInput } from './update-blog-schema';
 
 import TiptapEditor from './TiptapEditor';
-import { PlusIcon } from 'lucide-react';
+import { Edit2Icon, ArrowLeftIcon } from 'lucide-react';
 
 import {
 	FormControl,
@@ -17,43 +17,51 @@ import {
 
 import { Input } from '@/components/shadcn/input';
 
-import { Button } from '@/components/shadcn/button';
+import { Button, buttonVariants } from '@/components/shadcn/button';
 
 import { useMutation } from '@tanstack/react-query';
-import { createBlog } from './api';
+import { updateBlog } from './api';
+
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import { Switch } from '@/components/shadcn/switch';
+import { ImageFileInput } from '@/components/ImageFileInput';
 import Link from 'next/link';
-import { ArrowLeftIcon } from 'lucide-react';
 
 import { useForm } from 'react-hook-form';
-import { NewImageFileInput } from './NewImageFileInput';
 import { toKebabCase } from '@/lib/kebab-case';
-import { buttonVariants } from '@/components/shadcn/button';
 
-export default function NewBlogForm() {
+export default function UpdateBlogForm({
+	id,
+	isActive,
+	title,
+	slug,
+	content,
+	excerpt,
+	thumbnailUrl,
+}: UpdateBlogInput) {
 	const router = useRouter();
 
-	const form = useForm<CreateBlogInput>({
-		resolver: zodResolver(createBlogSchema),
+	const form = useForm<UpdateBlogInput>({
+		resolver: zodResolver(updateBlogSchema),
 		defaultValues: {
-			isActive: true,
-			title: '',
-			excerpt: '',
-			content: '',
-			slug: '',
+			id: id,
+			isActive: isActive ?? true,
+			title: title ?? '',
+			slug: slug ?? '',
+			content: content ?? '',
+			excerpt: excerpt ?? '',
 			file: undefined,
-			thumbnailUrl: '',
+			thumbnailUrl: thumbnailUrl ?? '',
 		},
 	});
 
 	const { handleSubmit } = form;
 
-	const { mutate: createBlogMutate } = useMutation({
-		mutationFn: createBlog,
+	const { mutate: updateBlogMutate } = useMutation({
+		mutationFn: updateBlog,
 		onSuccess: (data) => {
-			toast.success(`${data.title} has been successfully created.`);
+			toast.success(`${data.title} has been successfully updated.`);
 			router.push('/admin/blogs');
 		},
 		onError: (error) => {
@@ -63,17 +71,17 @@ export default function NewBlogForm() {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={handleSubmit((values) => createBlogMutate(values))}>
+			<form onSubmit={handleSubmit((values) => updateBlogMutate({ ...values }))}>
 				<div className="flex justify-between">
-					<h1 className="h3 mb-4">Create Blog</h1>
-					<div className="flex gap-2">
+					<h1 className="h3 mb-4">{form.getValues('title')}</h1>
+					<div className=" flex gap-3">
 						<Link className={buttonVariants({ variant: 'secondary' })} href="/admin/blogs">
 							<ArrowLeftIcon />
 							<span>Cancel</span>
 						</Link>
-						<Button type="submit" className="w-fit ml-auto">
-							<span>Create Blog</span>
-							<PlusIcon />
+						<Button type="submit" className="w-fit">
+							<Edit2Icon />
+							<span>Update Blog</span>
 						</Button>
 					</div>
 				</div>
@@ -93,7 +101,7 @@ export default function NewBlogForm() {
 					}}
 				/>
 				<div className="grid grid-cols-3">
-					<NewImageFileInput form={form} />
+					<ImageFileInput form={form} />
 				</div>
 				<div className="grid grid-cols-2 gap-6">
 					<FormField
@@ -124,9 +132,9 @@ export default function NewBlogForm() {
 						render={({ field }) => {
 							return (
 								<FormItem className="grid gap-3">
-									<FormLabel>Slug</FormLabel>
+									<FormLabel>Slug (Auto updates based on title)</FormLabel>
 									<FormControl>
-										<Input {...field} readOnly className="outline-0" />
+										<Input {...field} readOnly />
 									</FormControl>
 									<FormMessage />
 								</FormItem>

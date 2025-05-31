@@ -25,7 +25,7 @@ export default function BlogCard({
 }: BlogCardProps) {
 	const slug = toKebabCase(title);
 
-	const stringDate = createdAt.toLocaleDateString('en-US', {
+	const stringDate = new Date(createdAt).toLocaleDateString('en-US', {
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric',
@@ -39,7 +39,6 @@ export default function BlogCard({
 						<ImageWrapper
 							src={thumbnailUrl}
 							placeholderUrl="/images/placeholder-img.webp"
-							aspectRatio="360/240"
 							className="mb-4"
 							alt={`${title}-thumbnail`}
 							loading={loading}

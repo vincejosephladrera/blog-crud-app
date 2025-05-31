@@ -1,4 +1,3 @@
-import { toKebabCase } from '@/lib/kebab-case';
 import ImageWrapper from '@/components/ImageWrapper';
 import Link from 'next/link';
 
@@ -7,6 +6,7 @@ interface FeatureBlogCardProp {
 	content: string;
 	thumbnailUrl?: string;
 	datePublished: Date;
+	slug: string;
 }
 
 export default function FeaturedBlogCard({
@@ -14,20 +14,18 @@ export default function FeaturedBlogCard({
 	content,
 	thumbnailUrl = '/images/featured-placeholder-img.webp',
 	datePublished,
+	slug,
 }: FeatureBlogCardProp) {
-	const stringDate = datePublished.toLocaleDateString('en-US', {
+	const stringDate = new Date(datePublished).toLocaleDateString('en-US', {
 		year: 'numeric',
 		month: 'long',
 		day: 'numeric',
 	});
 
-	const slug = toKebabCase(title);
-
 	return (
 		<>
 			<Link href={`${slug}`}>
 				<ImageWrapper
-					aspectRatio="1216/450"
 					src={thumbnailUrl}
 					placeholderUrl="/images/featured-placeholder-img.webp"
 					className="mb-8 rounded-xl"

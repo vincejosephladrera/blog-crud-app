@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
-export const createBlogSchema = z.object({
+export const updateBlogSchema = z.object({
+	id: z.string(),
 	isActive: z.boolean(),
 	title: z
 		.string()
@@ -22,4 +23,4 @@ export const createBlogSchema = z.object({
 	thumbnailUrl: z.string(),
 });
 
-export type CreateBlogInput = z.infer<typeof createBlogSchema>;
+export type UpdateBlogInput = z.infer<typeof updateBlogSchema>;

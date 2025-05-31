@@ -9,7 +9,7 @@ export default async function CMSLayout({ children }: PropsWithChildren) {
 		<SidebarProvider>
 			<AdminSidebar />
 			<SidebarTrigger />
-			<main className="p-4 w-full h-screen">{children}</main>
+			<main className="w-full min-h-screen relative p-4">{children}</main>
 		</SidebarProvider>
 	);
 }

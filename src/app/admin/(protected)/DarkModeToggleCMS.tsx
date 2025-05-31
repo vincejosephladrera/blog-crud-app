@@ -1,14 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipProvider,
-	TooltipTrigger,
-} from '@/components/shadcn/tooltip';
+import { Tooltip, TooltipProvider, TooltipTrigger } from '@/components/shadcn/tooltip';
 
 import { SunIcon, MoonIcon } from 'lucide-react';
+import { TooltipContentNoArrow } from '@/components/shadcn/tooltip-content-no-arrow';
 
 export default function DarkModeToggleCMS() {
 	const [isDarkMode, setIsDarkMode] = useState(true);
@@ -33,11 +29,11 @@ export default function DarkModeToggleCMS() {
 				>
 					{isDarkMode ? <SunIcon /> : <MoonIcon className="text-white" />}
 				</TooltipTrigger>
-				<TooltipContent>
+				<TooltipContentNoArrow>
 					<p className=" font-bold">
 						{isDarkMode ? 'Toggle to light mode' : 'Toggle to dark mode'}
 					</p>
-				</TooltipContent>
+				</TooltipContentNoArrow>
 			</Tooltip>
 		</TooltipProvider>
 	);
