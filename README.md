@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Blog CRUD App
 
-## Getting Started
+A simple blog CRUD (Create, Read, Update, Delete) application that allows users to manage blog posts. Built with modern technologies and deployed on Vercel.
 
-First, run the development server:
+**Live Site**: [https://blog-crud-app-ten.vercel.app/](https://blog-crud-app-ten.vercel.app/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+**Admin Login Link**: [https://blog-crud-app-ten.vercel.app/admin/login](https://blog-crud-app-ten.vercel.app/admin/login)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- ✅ Create Posts – Add new blog entries with title and content
+- 📖 Read Posts – View all existing blog posts
+- ✏️ Update Posts – Modify the content of any blog entry
+- 🗑️ Delete Posts – Remove blog posts permanently
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Frontend**: [Next.js](https://nextjs.org/)
+- **Backend & Database**: [Supabase](https://supabase.com/)
+- **Styling**: Tailwind CSS or modern CSS-in-JS
+- **Deployment**: [Vercel](https://vercel.com/)
+- **Testing**: [Vitest](https://vitest.dev/) – unit tested some components
+- **State Management**:
+  - [TanStack Query](https://tanstack.com/query) – async data fetching and caching
+  - [TanStack Table](https://tanstack.com/table) – table rendering and control
+  - [Redux](https://redux.js.org/) – client-side/global UI state
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
