@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import { supabase } from '@/lib/supabase/supabase';
 import Container from '@/components/Container';
 import ImageWrapper from '@/components/ImageWrapper';
+import ContentRenderer from './ContentRenderer';
 
 type tParams = Promise<{ slug: string[] }>;
 
@@ -63,7 +64,7 @@ export default async function BlogShow({ params }: { params: tParams }) {
 							placeholderUrl="/images/featured-placeholder-img.webp"
 							className="mb-6"
 						/>
-						{data.content}
+						<ContentRenderer content={data.content} />
 					</Container>
 				</section>
 			</>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 interface FeatureBlogCardProp {
 	title: string;
-	content: string;
+	excerpt: string;
 	thumbnailUrl?: string;
 	datePublished: Date;
 	slug: string;
@@ -11,7 +11,7 @@ interface FeatureBlogCardProp {
 
 export default function FeaturedBlogCard({
 	title,
-	content,
+	excerpt,
 	thumbnailUrl = '/images/featured-placeholder-img.webp',
 	datePublished,
 	slug,
@@ -37,7 +37,7 @@ export default function FeaturedBlogCard({
 					<h1 className="h1 line-clamp-2 mb-6 hover:opacity-70">{title}</h1>
 				</Link>
 				<Link href={`${slug}`}>
-					<p className=" line-clamp-3 mb-3 hover:opacity-70">{content}</p>
+					<p className=" line-clamp-3 mb-3 hover:opacity-70">{excerpt}</p>
 				</Link>
 				<p className="mb-1">{stringDate}</p>
 				<Link href={`${slug}`}>

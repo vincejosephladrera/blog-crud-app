@@ -99,7 +99,7 @@ export default function SiteBlogList() {
 					{}
 					<FeaturedBlogCard
 						title={blogs?.pages[0].blogs[0].title}
-						content={blogs?.pages[0].blogs[0].content}
+						excerpt={blogs?.pages[0].blogs[0].excerpt}
 						datePublished={blogs?.pages[0].blogs[0].createdAt}
 						slug={blogs?.pages[0].blogs[0].slug}
 					/>

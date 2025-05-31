@@ -9,6 +9,7 @@ interface BlogCardProps {
 		id?: string;
 		title: string;
 		content: string;
+		excerpt: string;
 		thumbnailUrl?: string;
 		createdAt: Date;
 	};
@@ -19,7 +20,7 @@ export default function BlogCard({
 	blog: {
 		title,
 		thumbnailUrl = '/images/placeholder-img.webp',
-		content = '',
+		excerpt = '',
 		createdAt = new Date(),
 	},
 }: BlogCardProps) {
@@ -48,7 +49,7 @@ export default function BlogCard({
 						<h3 className="h3 line-clamp-3 mb-3">{title ?? 'Title'}</h3>
 					</Link>
 					<Link href={`/${slug}`} className="hover:opacity-70">
-						<p className="line-clamp-3 mb-3">{content}</p>
+						<p className="line-clamp-3 mb-3">{excerpt}</p>
 					</Link>
 					<p className="mb-3">{stringDate}</p>
 					<Link href={`/${slug}`} className="hover:opacity-70">
