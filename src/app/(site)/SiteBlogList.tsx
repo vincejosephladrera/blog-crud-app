@@ -12,6 +12,7 @@ import FeaturedBlogCard from './FeaturedBlogCard';
 interface Blog {
 	id?: string;
 	title: string;
+	excerpt: string;
 	content: string;
 	thumbnailUrl?: string;
 	createdAt: Date;
