@@ -7,9 +7,11 @@ import AdminSidebar from './AdminSidebar';
 export default async function CMSLayout({ children }: PropsWithChildren) {
 	return (
 		<SidebarProvider>
-			<AdminSidebar />
-			<SidebarTrigger />
-			<main className="w-full min-h-screen relative p-4">{children}</main>
+			<div className="overflow-hidden w-screen h-screen">
+				<AdminSidebar />
+				<SidebarTrigger className="absolute top-0 left-0 z-20 lg:hidden" />
+				<main className="lg:pl-[17rem] w-full h-screen relative p-4">{children}</main>
+			</div>
 		</SidebarProvider>
 	);
 }

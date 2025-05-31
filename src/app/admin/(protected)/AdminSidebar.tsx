@@ -25,7 +25,7 @@ const contentMaintenanceLinks = [
 
 export default function AdminSidebar() {
 	return (
-		<Sidebar>
+		<Sidebar className="fixed top-0 left-0 !border-0">
 			<SidebarHeader>
 				<SidebarGroup className="mt-auto">
 					<DarkModeToggleCMS />
