@@ -100,7 +100,7 @@ export default function RegistrationForm({ className, ...props }: React.Componen
 								<FormItem className="grid gap-3">
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										<PasswordInput {...field} />
+										<PasswordInput autoComplete="off" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>

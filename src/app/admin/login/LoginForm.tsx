@@ -92,7 +92,7 @@ export default function LoginForm({ className, ...props }: React.ComponentProps<
 								<FormItem className="grid gap-3">
 									<FormLabel>Password</FormLabel>
 									<FormControl>
-										<PasswordInput type="password" {...field} />
+										<PasswordInput autoComplete="off" {...field} />
 									</FormControl>
 									<FormMessage />
 								</FormItem>
